@@ -1,0 +1,122 @@
+public class Cliente
+{
+    private int codigo;
+    private string nome;
+    private string telefone;
+    private string email;
+    private DateTime dataNascimento;
+
+    public int Codigo { get; set; }
+    public string Nome { get; set; }
+    public string Telefone { get; set; }
+    public string Email { get; set; }
+    public DateTime DataNascimento { get; set; }
+
+    public Cliente()
+    {
+    }
+
+    public Cliente(int codigo, string nome, string telefone, string email, DateTime dataNascimento)
+    {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public override string ToString()
+    {
+        return string.Format("{0} - {1}", Codigo, Nome);
+    }
+}
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        // Criar lista de clientes
+        List<Cliente> clientes = new List<Cliente>();
+
+        // Cadastrar alguns clientes
+        clientes.Add(new Cliente(1, "João Silva", "(11) 9999-9999", "joaosilva@email.com", new DateTime(1980, 1, 1)));
+        clientes.Add(new Cliente(2, "Maria Oliveira", "(12) 8888-8888", "mariaoliveira@email.com", new DateTime(1985, 2, 2)));
+        clientes.Add(new Cliente(3, "Pedro Souza", "(13) 7777-7777", "pedrosouza@email.com", new DateTime(1990, 3, 3)));
+
+        // Opções do sistema
+        int opcao;
+        do
+        {
+            Console.WriteLine("**Sistema de Controle de Clientes**");
+            Console.WriteLine("1 - Cadastrar Cliente");
+            Console.WriteLine("2 - Consultar Cliente");
+            Console.WriteLine("3 - Alterar Cliente");
+            Console.WriteLine("4 - Excluir Cliente");
+            Console.WriteLine("5 - Listar Clientes");
+            Console.WriteLine("0 - Sair");
+            Console.Write("Opção: ");
+
+            opcao = int.Parse(Console.ReadLine());
+
+            switch (opcao)
+            {
+                case 1:
+                    // Cadastrar cliente
+                    CadastrarCliente(clientes);
+                    break;
+                case 2:
+                    // Consultar cliente
+                    ConsultarCliente(clientes);
+                    break;
+                case 3:
+                    // Alterar cliente
+                    AlterarCliente(clientes);
+                    break;
+                case 4:
+                    // Excluir cliente
+                    ExcluirCliente(clientes);
+                    break;
+                case 5:
+                    // Listar clientes
+                    ListarClientes(clientes);
+                    break;
+                case 0:
+                    // Sair do sistema
+                    Console.WriteLine("Saindo do sistema...");
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida!");
+                    break;
+            }
+        } while (opcao != 0);
+    }
+
+    private static void CadastrarCliente(List<Cliente> clientes)
+    {
+        Console.WriteLine("**Cadastro de Cliente**");
+
+        // Ler dados do cliente
+        Console.Write("Nome: ");
+        string nome = Console.ReadLine();
+
+        Console.Write("Telefone: ");
+        string telefone = Console.ReadLine();
+
+        Console.Write("Email: ");
+        string email = Console.ReadLine();
+
+        Console.Write("Data de Nascimento (dd/mm/aaaa): ");
+        DateTime dataNascimento = DateTime.Parse(Console.ReadLine());
+
+        // Criar novo cliente
+        Cliente cliente = new Cliente(0, nome, telefone, email, dataNascimento);
+
+        // Adicionar cliente à lista
+        clientes.Add(cliente);
+
+        Console.WriteLine("Cliente cadastrado com sucesso!");
+    }
+
+    private static void ConsultarCliente(List<Cliente> clientes)
+    {
+        
